@@ -35,6 +35,32 @@ const {
 	</head>
 	<body class="bg-white text-slate-900 font-sans antialiased overflow-x-hidden selection:bg-[#FF6600] selection:text-white">
 		<slot />
+		
+		<script>
+			// Intersection Observer for Scroll Animations
+			const observerOptions = {
+				root: null,
+				rootMargin: '0px',
+				threshold: 0.1
+			};
+
+			const observer = new IntersectionObserver((entries, observer) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('is-visible');
+						// Uncomment next line if you only want it to animate once
+						// observer.unobserve(entry.target);
+					}
+				});
+			}, observerOptions);
+
+			// Re-run on View Transitions (if using them) or initial load
+			document.addEventListener('DOMContentLoaded', () => {
+				document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+					observer.observe(el);
+				});
+			});
+		</script>
 	</body>
 </html>
 

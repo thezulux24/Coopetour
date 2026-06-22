@@ -1,35 +1,32 @@
 ---
 const links = [
-  { name: "Producción", href: "#pilares" },
-  { name: "Mangle", href: "#pilares" },
-  { name: "Torneos", href: "#pilares" },
-  { name: "Galería", href: "#galeria" },
+  { name: "Producción", href: "/#pilares" },
+  { name: "Mangle", href: "/#pilares" },
+  { name: "Torneos", href: "/#experiencias" },
+  { name: "Galería", href: "/#galeria" },
 ];
 ---
 
-<nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100 transition-all duration-300">
-  <div class="flex justify-between items-center px-4 sm:px-6 lg:px-12 py-5 max-w-7xl mx-auto">
+<nav id="navbar" class="fixed top-0 w-full z-50 bg-transparent transition-all duration-500 py-6 border-b border-transparent">
+  <div class="flex justify-between items-center px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto">
     
     <!-- Logo -->
-    <a href="#" class="flex items-center gap-4 cursor-pointer">
+    <a href="/" class="flex items-center gap-4 cursor-pointer">
       <img alt="Logo Coopetour" class="h-12 w-12 md:h-14 md:w-14 object-contain" src="/images/logoFondoNegro.png"/>
       <span class="font-outfit font-medium text-xl tracking-tight text-slate-900 hidden md:block">Coopetour</span>
     </a>
 
-    <!-- Desktop Menu -->
+    <!-- Links -->
     <div class="hidden md:flex items-center gap-10">
       {links.map((link) => (
-        <a 
-          href={link.href} 
-          class="text-slate-600 hover:text-slate-900 transition-colors text-xs font-medium uppercase tracking-[0.1em]"
-        >
+        <a class="text-slate-500 hover:text-slate-900 transition-colors font-inter text-[12px] font-medium uppercase tracking-[0.1em]" href={link.href}>
           {link.name}
         </a>
       ))}
     </div>
 
     <!-- CTA -->
-    <a href="#contacto" class="hidden md:block bg-transparent border border-slate-400 text-slate-900 text-xs font-medium uppercase tracking-[0.1em] py-2 px-6 hover:bg-slate-50 transition-colors duration-300">
+    <a href="#contacto" class="hidden md:block bg-transparent border border-slate-300 text-slate-900 font-inter text-[12px] font-medium uppercase tracking-[0.1em] py-3 px-8 hover:bg-slate-50 transition-colors duration-300">
       Apoyar Ahora
     </a>
 
@@ -39,7 +36,6 @@ const links = [
         <span class="material-symbols-outlined text-2xl">menu</span>
       </button>
     </div>
-
   </div>
 
   <!-- Mobile Menu Panel -->
@@ -68,15 +64,19 @@ const links = [
     menu?.classList.toggle('hidden');
   });
 
-  // Simple scroll effect for navbar border
-  window.addEventListener('scroll', () => {
-      const nav = document.getElementById('navbar');
+  // Navbar Glassmorphism on Scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
       if (window.scrollY > 20) {
-          nav?.classList.add('border-slate-200');
-          nav?.classList.remove('border-slate-100');
+        nav.classList.remove('bg-transparent', 'border-transparent', 'py-6');
+        nav.classList.add('bg-white', 'backdrop-blur-md', 'border-slate-200', 'shadow-sm', 'py-4');
       } else {
-          nav?.classList.add('border-slate-100');
-          nav?.classList.remove('border-slate-200');
+        nav.classList.add('bg-transparent', 'border-transparent', 'py-6');
+        nav.classList.remove('bg-white', 'backdrop-blur-md', 'border-slate-200', 'shadow-sm', 'py-4');
       }
+    });
+    // Trigger once on load in case of refresh in middle of page
+    window.dispatchEvent(new Event('scroll'));
   });
 </script>

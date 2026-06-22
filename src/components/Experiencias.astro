@@ -1,0 +1,50 @@
+---
+const experiencias = [
+  {
+    titulo: "Torneos de Pesca de Robalo",
+    desc: "Participa en nuestros torneos anuales enfocados en la pesca deportiva sostenible (Catch & Release).",
+    info: ["Temporada: Octubre - Enero", "Guías locales expertos", "Embarcaciones equipadas"]
+  },
+  {
+    titulo: "Exploración de Fauna Marítima",
+    desc: "Recorridos guiados por los ecosistemas de manglar. Ideal para fotógrafos de naturaleza y familias.",
+    info: ["Avistamiento de aves endémicas", "Recorridos al amanecer", "Educación ambiental"]
+  }
+];
+---
+
+<section id="experiencias" class="py-24 md:py-32 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-slate-200 animate-on-scroll">
+  <div class="flex flex-col md:flex-row gap-16 md:gap-24">
+    
+    <div class="w-full md:w-1/3">
+      <h2 class="font-outfit text-[44px] text-slate-900 font-light tracking-[-0.02em] leading-[1.2] mb-6">
+        Nuestras <br/> Experiencias
+      </h2>
+      <p class="font-inter text-[15px] font-light text-slate-600 leading-[1.7]">
+        Más que turismo, ofrecemos una inmersión completa en la riqueza natural de La Palma. Cada actividad está diseñada para financiar la conservación y apoyar a las familias cooperativistas.
+      </p>
+    </div>
+
+    <div class="w-full md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-12">
+      {experiencias.map((exp) => (
+        <div class="flex flex-col border-t border-slate-200 pt-8 group">
+          <h3 class="font-outfit text-[24px] font-normal tracking-tight text-slate-900 mb-4 group-hover:text-[#FF6600] transition-colors duration-300">
+            {exp.titulo}
+          </h3>
+          <p class="font-inter text-[14px] text-slate-600 font-light leading-relaxed mb-6">
+            {exp.desc}
+          </p>
+          <ul class="flex flex-col gap-3 mt-auto">
+            {exp.info.map((item) => (
+              <li class="flex items-center gap-3 font-inter text-[13px] text-slate-500 uppercase tracking-widest font-medium">
+                <span class="w-1.5 h-1.5 bg-[#FF6600] rounded-full"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
