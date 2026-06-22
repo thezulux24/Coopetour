@@ -15,32 +15,32 @@
       
       <!-- Large Feature -->
       <figure class="md:col-span-8 flex flex-col gap-4">
-        <img alt="Visión del ecoparque" class="w-full h-auto object-cover" src="/images/vista2Render.jpeg"/>
+        <img alt="Visión del ecoparque" class="gallery-img w-full h-auto object-cover" src="/images/vista2Render.jpeg"/>
         <figcaption class="text-[11px] font-bold uppercase tracking-widest text-slate-500 border-t border-slate-200 pt-3 flex justify-between">
           <span>Visión Arquitectónica</span>
           <span class="opacity-50">Proyección</span>
         </figcaption>
       </figure>
 
-      <!-- Small Item 1 -->
+      <!-- Imagen 1 -->
       <figure class="md:col-span-4 flex flex-col gap-4 md:mt-24">
-        <img alt="Naturaleza y Mangle" class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700" src="/images/lagoHojaFoto.jpeg"/>
+        <img alt="Naturaleza y Mangle" class="gallery-img w-full h-auto object-cover grayscale md:hover:grayscale-0 transition-all duration-1000" src="/images/lagoHojaFoto.jpeg"/>
         <figcaption class="text-[11px] font-bold uppercase tracking-widest text-slate-500 border-t border-slate-200 pt-3">
           Ecosistema Natural
         </figcaption>
       </figure>
 
-      <!-- Small Item 2 -->
+      <!-- Imagen 2 -->
       <figure class="md:col-span-4 flex flex-col gap-4">
-        <img alt="Personas de la comunidad" class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700" src="/images/personas.jpeg"/>
+        <img alt="Personas de la comunidad" class="gallery-img w-full h-auto object-cover grayscale md:hover:grayscale-0 transition-all duration-1000" src="/images/personas.jpeg"/>
         <figcaption class="text-[11px] font-bold uppercase tracking-widest text-slate-500 border-t border-slate-200 pt-3">
           Comunidad en Acción
         </figcaption>
       </figure>
 
-      <!-- Small Item 3 -->
+      <!-- Imagen 3 -->
       <figure class="md:col-span-4 flex flex-col gap-4">
-        <img alt="Río San Pedro" class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700" src="/images/lago.jpeg"/>
+        <img alt="Río San Pedro" class="gallery-img w-full h-auto object-cover grayscale md:hover:grayscale-0 transition-all duration-1000" src="/images/lago.jpeg"/>
         <figcaption class="text-[11px] font-bold uppercase tracking-widest text-slate-500 border-t border-slate-200 pt-3">
           Río San Pedro Mártir
         </figcaption>
@@ -67,3 +67,24 @@
 
   </div>
 </section>
+
+<script>
+  // Mobile: Remove grayscale from images after a short delay when scrolled into view
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth < 768) {
+      const images = document.querySelectorAll('.gallery-img');
+      const imgObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.remove('grayscale');
+            }, 800); // 800ms delay para que tomen color
+            imgObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      
+      images.forEach(img => imgObserver.observe(img));
+    }
+  });
+</script>
