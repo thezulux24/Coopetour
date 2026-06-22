@@ -33,7 +33,7 @@ const visionImages = [
           <div id="situacion-track" class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar rounded-sm shadow-sm">
             {situacionImages.map((src, idx) => (
               <div class="w-full flex-shrink-0 snap-center relative aspect-[4/3]">
-                <img src={src} alt={`Situación ${idx + 1}`} class="w-full h-full object-cover grayscale-[20%]" />
+                <img src={src} alt={`Situación ${idx + 1}`} class="w-full h-full object-cover grayscale-[20%]" loading="lazy" decoding="async" />
                 <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
                   <span class="font-inter text-[9px] text-slate-800 uppercase tracking-widest font-bold">
                     {idx + 1} / {situacionImages.length}
