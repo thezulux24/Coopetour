@@ -1,0 +1,132 @@
+---
+const situacionImages = [
+  "/images/puenteActual.jpeg",
+  "/images/lago.jpeg",
+  "/images/lagoAtardecer.jpeg",
+  "/images/niños.jpeg"
+];
+
+const visionImages = [
+  "/images/vista2Render.jpeg",
+  "/images/vista1Render.jpeg",
+  "/images/puenteRender.jpeg",
+  "/images/entradaRender.jpeg",
+  "/images/laPalmaRender.jpeg"
+];
+---
+
+<section id="contexto" class="py-20 md:py-24 bg-slate-50 border-y border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+      
+      <!-- Problemática -->
+      <div class="flex flex-col gap-8">
+        <div class="border-l border-slate-300 pl-6">
+          <h2 class="font-outfit text-[28px] font-normal text-slate-900 mb-4 leading-[1.4]">La Situación Actual</h2>
+          <p class="font-inter text-[15px] font-light text-slate-600 leading-[1.7]">
+            Nuestra comunidad se enfrenta al abandono de infraestructuras turísticas clave. La falta de mantenimiento ha dejado puentes y accesos en ruinas, limitando el potencial económico y aislando nuestra riqueza natural.
+          </p>
+        </div>
+        
+        <!-- Galeria Minimalista con Slider -->
+        <div class="relative group mt-4">
+          <div id="situacion-track" class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar rounded-sm shadow-sm">
+            {situacionImages.map((src, idx) => (
+              <div class="w-full flex-shrink-0 snap-center relative aspect-[4/3]">
+                <img src={src} alt={`Situación ${idx + 1}`} class="w-full h-full object-cover grayscale-[20%]" />
+                <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
+                  <span class="font-inter text-[9px] text-slate-800 uppercase tracking-widest font-bold">
+                    {idx + 1} / {situacionImages.length}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <!-- Controles -->
+          <button id="situacion-prev" class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full shadow-md flex items-center justify-center text-slate-800 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white" aria-label="Anterior">
+            <span class="material-symbols-outlined">chevron_left</span>
+          </button>
+          <button id="situacion-next" class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full shadow-md flex items-center justify-center text-slate-800 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white" aria-label="Siguiente">
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Visión -->
+      <div class="flex flex-col gap-8">
+        <div class="border-l border-[#FF6600]/30 pl-6">
+          <h2 class="font-outfit text-[28px] font-normal text-slate-900 mb-4 leading-[1.4]">Nuestra Visión</h2>
+          <p class="font-inter text-[15px] font-light text-slate-600 leading-[1.7]">
+            Visualizamos un renacer vibrante. A través de la reconstrucción sostenible y el diseño consciente, planeamos transformar estos espacios en centros de ecoturismo de primer nivel, integrando la naturaleza con la arquitectura moderna.
+          </p>
+        </div>
+        
+        <!-- Galeria Minimalista con Slider -->
+        <div class="relative group mt-4">
+          <div id="vision-track" class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar rounded-sm shadow-md">
+            {visionImages.map((src, idx) => (
+              <div class="w-full flex-shrink-0 snap-center relative aspect-[4/3]">
+                <img src={src} alt={`Visión ${idx + 1}`} class="w-full h-full object-cover" />
+                <div class="absolute bottom-4 left-4 bg-slate-900/90 backdrop-blur-sm px-3 py-1 rounded-full">
+                  <span class="font-inter text-[9px] text-white uppercase tracking-widest font-bold">
+                    {idx + 1} / {visionImages.length}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <!-- Controles -->
+          <button id="vision-prev" class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full shadow-md flex items-center justify-center text-slate-800 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white" aria-label="Anterior">
+            <span class="material-symbols-outlined">chevron_left</span>
+          </button>
+          <button id="vision-next" class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full shadow-md flex items-center justify-center text-slate-800 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white" aria-label="Siguiente">
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+</style>
+
+<script>
+  function setupCarousel(id: string) {
+    const track = document.getElementById(`${id}-track`);
+    const prev = document.getElementById(`${id}-prev`);
+    const next = document.getElementById(`${id}-next`);
+    
+    if(!track || !prev || !next) return;
+
+    prev.addEventListener('click', () => {
+      track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
+    });
+    
+    next.addEventListener('click', () => {
+      track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+    });
+  }
+
+  // Setup on initial load
+  setupCarousel('situacion');
+  setupCarousel('vision');
+
+  // Re-setup if using ViewTransitions
+  document.addEventListener('astro:page-load', () => {
+    setupCarousel('situacion');
+    setupCarousel('vision');
+  });
+</script>
